@@ -1,0 +1,7 @@
+.borderless td, .borderless th {
+    border: border-bottom;
+    border-bottom-style: solid;
+}
+#img_icon{
+    width: 10%;
+}
