@@ -1,0 +1,3 @@
+[submodule "pi-router-os-core"]
+	path = pi-router-os-core
+	url = https://github.com/sss22213/pi-router-os-core
