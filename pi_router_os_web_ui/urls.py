@@ -20,4 +20,5 @@ from webui.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage),
+    path('get_sensor_update_time', get_interface_list),
 ]
