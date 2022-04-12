@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 30rem;">
         <div class="card-body">
           <h4 class="card-title">System Information</h4>
           <p class="card-text"><div id="system_info"></div></p>
@@ -11,6 +11,7 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h4 class="card-title">Network Mode</h4>
+        <h6 class="card-text">Wireless Mode :<div id="wireless_mode"></div></h6>
         <p class="card-text"><div id="network_mode"></div></p>
       </div>
     </div>
@@ -18,10 +19,24 @@
 </div>
 <div class="row">
   <div class="col">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 30rem;">
         <div class="card-body">
           <h4 class="card-title">Connected Device</h4>
-          <p class="card-text"><div id="connected_device"></div></p>
+          <p class="card-text">
+            <table class="table" id="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">name</th>
+                  <th scope="col">timestamp</th>
+                  <th scope="col">mac address</th>
+                  <th scope="col">ip address</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </p>
         </div>
     </div>
   </div>

@@ -6,9 +6,13 @@ import sys
 sys.path.append('/root/pi-router-os-web-ui/pi-router-os-core/networkinfo/scripts')
 import netdevice
 import wireless
+import wireless_uci
+import dhcp_list
 
 net = netdevice.netdevice()
 wire = wireless.wireless()
+wire_uci = wireless_uci.wireless_uci()
+dhcp_client_list = dhcp_list.dhcp_list()
 
 # Create your views here.
 def homepage(request):
@@ -153,4 +157,19 @@ def get_quility(request):
             res["res"] = 404
     else:
         res["res"] = 404
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_radio_mode(request):
+    res = {"name":"get_radio_mode", "value":{}, "res":200}
+    radio_num = request.POST.get('radio_num')
+    if wire_uci.get_wireless_mode(int(radio_num)) == "-1":
+        res["res"] = 400
+    else:
+        res["value"] = wire_uci.get_wireless_mode(int(radio_num))
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+
+def get_dhcp_client_list(request):
+    res = {"name":"get_dhcp_client_list", "value":{}, "res":200}
+    res["value"] = dhcp_client_list.get_dhcp_list()
     return HttpResponse(json.dumps(res), content_type='application/json')

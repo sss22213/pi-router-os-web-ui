@@ -29,4 +29,6 @@ urlpatterns = [
     path('get_bitrate', get_bitrate),
     path('get_ap_mac_addr', get_ap_mac_addr),
     path('get_quility', get_quility),
+    path('get_radio_mode', get_radio_mode),
+    path('get_dhcp_client_list', get_dhcp_client_list),
 ]
