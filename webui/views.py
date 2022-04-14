@@ -2,17 +2,20 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json
 import sys
+import os
 
 sys.path.append('/root/pi-router-os-web-ui/pi-router-os-core/networkinfo/scripts')
 import netdevice
 import wireless
 import wireless_uci
 import dhcp_list
+import hw_info
 
 net = netdevice.netdevice()
 wire = wireless.wireless()
 wire_uci = wireless_uci.wireless_uci()
 dhcp_client_list = dhcp_list.dhcp_list()
+hardware_info = hw_info.raspi_hw_info()
 
 # Create your views here.
 def homepage(request):
@@ -173,3 +176,51 @@ def get_dhcp_client_list(request):
     res = {"name":"get_dhcp_client_list", "value":{}, "res":200}
     res["value"] = dhcp_client_list.get_dhcp_list()
     return HttpResponse(json.dumps(res), content_type='application/json')
+
+'''
+def get_sys_infomation(request):
+    res = {"name":"get_sys_infomation", "value":{}, "res":200}
+    process = os.popen('cat /proc/cpuinfo')
+    preprocessed = process.read()
+    print(preprocessed)
+    process.close()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+'''
+
+
+# Hardware
+def get_model_name(request):
+    res = {"name":"get_model_name", "value":{}, "res":200}
+    res["value"] = hardware_info.get_model_name()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_cpu_core(request):
+    res = {"name":"get_cpu_core", "value":{}, "res":200}
+    res["value"] = hardware_info.get_cpu_core()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_pi_sn(request):
+    res = {"name":"get_pi_sn", "value":{}, "res":200}
+    res["value"] = hardware_info.get_pi_sn()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_cpu_core(request):
+    res = {"name":"get_cpu_core", "value":{}, "res":200}
+    res["value"] = hardware_info.get_cpu_core()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_linux_infomation(request):
+    res = {"name":"get_linux_infomation", "value":{}, "res":200}
+    res["value"] = hardware_info.get_linux_infomation()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_pi_router_os_version(request):
+    res = {"name":"get_pi_router_os_version", "value":{}, "res":200}
+    res["value"] = hardware_info.get_pi_router_os_version()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_cpu_usage_percent(request):
+    res = {"name":"get_cpu_usage_percent", "value":{}, "res":200}
+    res["value"] = hardware_info.get_cpu_usage_percent()
+    return HttpResponse(json.dumps(res), content_type='application/json')
+    

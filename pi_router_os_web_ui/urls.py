@@ -31,4 +31,11 @@ urlpatterns = [
     path('get_quility', get_quility),
     path('get_radio_mode', get_radio_mode),
     path('get_dhcp_client_list', get_dhcp_client_list),
+    path('get_model_name', get_model_name),
+    path('get_cpu_core', get_cpu_core),
+    path('get_pi_sn', get_pi_sn),
+    path('get_cpu_core', get_cpu_core),
+    path('get_linux_infomation', get_linux_infomation),
+    path('get_pi_router_os_version', get_pi_router_os_version),
+    path('get_cpu_usage_percent', get_cpu_usage_percent),
 ]

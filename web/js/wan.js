@@ -144,9 +144,10 @@ $(function() {
                         <td>@mdo</td>
                         </tr>
                  */
-                $('#table tbody').html("");
+                $('#table tbody').empty();
                 count = 1
                 data["value"].forEach(function(item, index) {
+                    information = "";
                     information += "<tr>";
                     information += "<th scope='row'>"+ count +"</th>";
                     information += "<td>"+ item["name"] +"</td>";
@@ -157,6 +158,74 @@ $(function() {
                     $('#table tbody').append(information);
                     count = count + 1;
                 });
+
+            },
+        });
+    }
+
+    // Hardware
+    function get_model_name() {
+        $.ajax({
+            url: '/get_model_name',
+            data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+            type: 'post',
+            success: function(data) {
+                $("#mode_name").html(data["value"]);
+            },
+        });  
+    }
+
+    function get_pi_sn() {
+        $.ajax({
+            url: '/get_pi_sn',
+            data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+            type: 'post',
+            success: function(data) {
+                $("#serial_number").html(data["value"]);
+            },
+        });  
+    }
+
+    function get_cpu_core() {
+        $.ajax({
+            url: '/get_cpu_core',
+            data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+            type: 'post',
+            success: function(data) {
+                $("#core_count").html(data["value"]);
+            },
+        });  
+    }
+
+    function get_linux_infomation() {
+        $.ajax({
+            url: '/get_linux_infomation',
+            data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+            type: 'post',
+            success: function(data) {
+                $("#linux_version").html(data["value"]);
+            },
+        });  
+    }
+    
+    function get_pi_router_os_version() {
+        $.ajax({
+            url: '/get_pi_router_os_version',
+            data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+            type: 'post',
+            success: function(data) {
+                $("#pi_router_os_version").html(data["value"]);
+            },
+        });
+    }
+
+    function get_cpu_usage_percent() {
+        $.ajax({
+            url: '/get_cpu_usage_percent',
+            data : {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
+            type: 'post',
+            success: function(data) {
+                $("#cpu_usage_percent").html(data["value"]+"%");
             },
         });
     }
@@ -175,6 +244,12 @@ $(function() {
         get_ethernet_netmask();
         get_wireless_radio_mode();
         get_dhcp_client_list();
+        get_model_name();
+        get_pi_sn();
+        get_cpu_core();
+        get_linux_infomation();
+        get_pi_router_os_version();
+        get_cpu_usage_percent();
     }
 
     setInterval(update, 1000);
